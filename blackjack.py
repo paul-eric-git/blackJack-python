@@ -92,6 +92,7 @@ def init_game(deck, player_hand, dealer_hand):
 	
 
 def print_scores(player_hand, player_score, dealer_hand, dealer_score):
+	print("=" * 50)
 	print("\n" + "Player: " + ", ".join(player_hand) + " -> Score: " + str(player_score))
 	print("Dealer: " + ", ".join(dealer_hand) + " -> Score: " + str(dealer_score) + "\n")
 	return		
@@ -115,7 +116,8 @@ def main():
 
 	while players_turn:
 		#prompt user if an additional card is desired
-		another_card = input("Another Card? (y/n): ").lower()		
+		another_card = input("Another Card? (y/n): ").lower()
+				
 		if another_card == "y":
 			#draw new card, add it to player hand, calc player_score
 			deck, card = deal_card(deck)
@@ -124,6 +126,7 @@ def main():
 			
 			#if score exceeds 21
 			if(player_score > 21):
+				print("=" * 50 + "\n")
 				print("Game Over, your score is: " + f"{player_score}" + "\nTherefore you lose.")
 				sys.exit()
 			#if score is lower than 21
@@ -131,6 +134,7 @@ def main():
 				print_scores(player_hand, player_score, dealer_hand, dealer_score)
 			#score is 21
 			else:
+				print("=" * 50 + "\n")
 				print_scores(player_hand, player_score, dealer_hand, dealer_score)
 				print("BLACK JACK, you won!!!")
 				sys.exit()
@@ -170,6 +174,9 @@ def main():
 			sys.exit()	
 	
 	#game end, this scenario happens, when dealers score is between 17 and 21 and player passed on his turn
+	
+	print("=" * 50)
+	
 	if player_score > dealer_score:
 		print("\nYou won. Your Score: " + f"{player_score}, " + "Dealers Score: " + f"{dealer_score}")
 	elif player_score < dealer_score:
