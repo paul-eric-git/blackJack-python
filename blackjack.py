@@ -1,3 +1,4 @@
+import sys
 from random import shuffle
 from random import choice
 
@@ -87,8 +88,10 @@ def init_game(deck, player_hand, dealer_hand):
 
 	return deck, player_hand, player_score, dealer_hand, dealer_score
 	
-		
 
+def print_scores(player_hand, dealer_hand):
+	#TODO!!!		
+	
 def main():
 	#init deck
 	deck = create_deck()
@@ -103,7 +106,7 @@ def main():
 	#init_game
 	deck, player_hand, player_score, dealer_hand, dealer_score = init_game(deck, player_hand, dealer_hand)
 
-	#interactive player part starts here
+	#interactive player turn starts here
 	players_turn = True
 
 	while players_turn:
@@ -120,17 +123,41 @@ def main():
 			#if score exceeds 21
 			if(player_score > 21):
 				print("Game Over, Score: " + f"{player_score}")
-				players_turn = False
+				sys.exit()
 			#if score is lower than 21
 			elif(player_score < 21):
-				print("Player: " + ", ".join(player_hand) + " -> Score: " +str(player_score))
+				print("Player: " + ", ".join(player_hand) + " -> Score: " + str(player_score))
+				print("Dealer: " + ", ".join(dealer_hand) + " -> Score: " + str(dealer_score))
 			#score is 21
 			else:
 				print("BLACK JACK, you won!!!")
-				players_turn = False
+				sys.exit()
 		else:
 			players_turn = False
+	#dealers turn starts
+	
+	#unknown card needs to be exchanged
+	dealer_hand.remove("UNKNOWN")
+	deck, card = deal_card(deck)
+	dealer_hand.append(card)
+
+	dealers_turn = True
+	while dealers_turn:
+		dealer_score = 0
+		
+		dealer_score = calculate_score(dealer_hand, dealer_score)
+		if dealer_score < 17:
+			deck, card = deal_card(deck)
+			dealer_hand.append(card)
 			
+			#print the scores
+			print("Player: " + ", ".join(player_hand) + " -> Score: " + str(player_score))
+			print("Dealer: " + ", ".join(dealer_hand) + " -> Score: " + str(dealer_score))
+		elif 17 <= dealer_score <= 21:
+			dealers_turn = False
+		else:
+			print("Dealer went over 21, you won!!!")
+			sys.exit()	
 	#print(deck)
 
 main()
