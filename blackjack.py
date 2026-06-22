@@ -115,8 +115,8 @@ def main():
 
 	while players_turn:
 		#prompt user if an additional card is desired
-		if input("Another Card? (y/n): ").lower() == "y":		
-	
+		another_card = input("Another Card? (y/n): ").lower()		
+		if another_card == "y":
 			#draw new card, add it to player hand, calc player_score
 			deck, card = deal_card(deck)
 			player_hand.append(card)
@@ -134,8 +134,10 @@ def main():
 				print_scores(player_hand, player_score, dealer_hand, dealer_score)
 				print("BLACK JACK, you won!!!")
 				sys.exit()
-		else:
+		elif another_card == "n":
 			players_turn = False
+		else:
+			pass
 	#dealers turn starts
 	
 	#unknown card needs to be exchanged
@@ -175,6 +177,6 @@ def main():
 	else:
 		print("\nDraw! You both scored: " + f"{player_score}") 
 	
-	print(deck)
+	#print(deck)
 
 main()
