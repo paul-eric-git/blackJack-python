@@ -123,7 +123,8 @@ def main():
 	while players_turn:
 		#prompt user if an additional card is desired
 		another_card = input("Another Card? (y/n): ").lower()
-				
+		print()
+						
 		if another_card == "y":
 			#draw new card, add it to player hand, calc player_score
 			deck, card = deal_card(deck)
