@@ -133,8 +133,9 @@ def main():
 			
 			#if score exceeds 21
 			if(player_score > 21):
+				#print(player_hand, player_score, dealer_hand, dealer_score)
 				print("=" * 50 + "\n")
-				print("Game Over, your score is: " + f"{player_score}" + "\nTherefore you lose.")
+				print("Game Over, your score is: " + f"{player_score}" + "\nTherefore you lose." + "\n")
 				sleep(2)
 				sys.exit()
 			#if score is lower than 21
@@ -144,7 +145,7 @@ def main():
 			else:
 				print_scores(player_hand, player_score, dealer_hand, dealer_score)
 				print("=" * 50)
-				print("BLACK JACK, you won!!!")
+				print("BLACK JACK, you won!!!" + "\n")
 				sleep(2)
 				sys.exit()
 		elif another_card == "n":
@@ -175,10 +176,9 @@ def main():
 			print_scores(player_hand, player_score, dealer_hand, dealer_score)
 		elif 17 <= dealer_score <= 21:
 			dealer_score = calculate_score(dealer_hand)
-			print_scores(player_hand, player_score, dealer_hand, dealer_score)
 			dealers_turn = False
 		else:
-			print("Dealer went over 21, you won!!! Your Score: " + f"{player_score}")
+			print("Dealer went over 21, you won!!! Your Score: " + f"{player_score}" + "\n")
 			sys.exit()	
 	
 	#game end, this scenario happens, when dealers score is between 17 and 21 and player passed on his turn
@@ -194,5 +194,10 @@ def main():
 	else:
 		print("\nDraw! You both scored: " + f"{player_score}") 
 		sleep(2)
+	print()
 
-main()
+try:
+	main()
+except (KeyboardInterrupt):
+	print("\nGame aborted. :(")
+	sys.exit()
