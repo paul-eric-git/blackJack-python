@@ -98,6 +98,7 @@ def print_scores(player_hand, player_score, dealer_hand, dealer_score):
 	return		
 	
 def main():
+	
 	#init deck
 	deck = create_deck()
 
@@ -111,6 +112,11 @@ def main():
 	#init_game
 	deck, player_hand, player_score, dealer_hand, dealer_score = init_game(deck, player_hand, dealer_hand)
 
+	#check if player got initial 21
+	if player_score == 21: 
+		print("BLACK JACK you won!!!")
+		sys.exit()
+	
 	#interactive player turn starts here
 	players_turn = True
 
@@ -128,15 +134,17 @@ def main():
 			if(player_score > 21):
 				print("=" * 50 + "\n")
 				print("Game Over, your score is: " + f"{player_score}" + "\nTherefore you lose.")
+				sleep(2)
 				sys.exit()
 			#if score is lower than 21
 			elif(player_score < 21):
 				print_scores(player_hand, player_score, dealer_hand, dealer_score)
 			#score is 21
 			else:
-				print("=" * 50 + "\n")
 				print_scores(player_hand, player_score, dealer_hand, dealer_score)
+				print("=" * 50)
 				print("BLACK JACK, you won!!!")
+				sleep(2)
 				sys.exit()
 		elif another_card == "n":
 			players_turn = False
@@ -151,12 +159,11 @@ def main():
 	dealer_score = calculate_score(dealer_hand)
 	
 	print_scores(player_hand, player_score, dealer_hand, dealer_score)
-	sleep(3)
 
 	dealers_turn = True
 	while dealers_turn:
 		
-		sleep(3)
+		sleep(2)
 		
 		if dealer_score < 17:
 			deck, card = deal_card(deck)
@@ -179,11 +186,12 @@ def main():
 	
 	if player_score > dealer_score:
 		print("\nYou won. Your Score: " + f"{player_score}, " + "Dealers Score: " + f"{dealer_score}")
+		sleep(2)
 	elif player_score < dealer_score:
 		print("\nDealer won. Your Score: " + f"{player_score}, " + "Dealers Score: " + f"{dealer_score}")
+		sleep(2)
 	else:
 		print("\nDraw! You both scored: " + f"{player_score}") 
-	
-	#print(deck)
+		sleep(2)
 
 main()
