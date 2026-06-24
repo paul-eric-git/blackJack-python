@@ -21,3 +21,6 @@ BLACKJACK - or at least my Python command-line version of it...
 		3. If your score exceeds 21, game over!
 		4. Once you pass (n) the dealer takes turn and plays until end of match
 		5. highest score without going over 21 wins
+
+	"Problems":
+		-Any 21 points combination counts as a Blackjack, not just Ace + King/Queen/Jack
