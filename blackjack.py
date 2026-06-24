@@ -179,6 +179,7 @@ def main():
 			dealers_turn = False
 		else:
 			print("Dealer went over 21, you won!!! Your Score: " + f"{player_score}" + "\n")
+			sleep(2)
 			sys.exit()	
 	
 	#game end, this scenario happens, when dealers score is between 17 and 21 and player passed on his turn
